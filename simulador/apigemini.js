@@ -187,6 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para consultar a API (com a lógica de mostrar o novo botão)
     async function getEconomyTips() {
         const prompt = generateGeminiPrompt();
+
+        // --- ADIÇÃO FEITA AQUI ---
+        console.log('Prompt enviado para a IA:\n', prompt);
         
         summaryTableContainer.innerHTML = `
             <div class="text-center">
@@ -216,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
             const resultado = data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-                                 'Não foi possível obter uma resposta da API. Tente novamente mais tarde.';
+                                     'Não foi possível obter uma resposta da API. Tente novamente mais tarde.';
 
             const formattedHtml = marked.parse(resultado);
             summaryTableContainer.innerHTML = `<div class="gemini-response-container p-3">${formattedHtml}</div>`; 
